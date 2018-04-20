@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\ManyToOne;
 
 /**
  * @ApiResource
@@ -32,6 +34,13 @@ class Booking
      * @ORM\Column(type="integer")
      */
     private $people_number;
+
+    /**
+     * Many Bookings have One Housing.
+     * @ManyToOne(targetEntity="Housing", inversedBy="bookings")
+     * @JoinColumn(name="housing_id", referencedColumnName="id")
+     */
+    private $housing;
 
     public function getId()
     {
@@ -70,6 +79,18 @@ class Booking
     public function setPeopleNumber(int $people_number): self
     {
         $this->people_number = $people_number;
+
+        return $this;
+    }
+
+    public function getHousing(): ?Housing
+    {
+        return $this->housing;
+    }
+
+    public function setHousing(?Housing $housing): self
+    {
+        $this->housing = $housing;
 
         return $this;
     }

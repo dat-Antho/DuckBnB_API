@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\ManyToOne;
 
 /**
  * @ApiResource
@@ -23,6 +25,13 @@ class Review
      */
     private $review;
 
+    /**
+     * Many Bookings have One Housing.
+     * @ManyToOne(targetEntity="Housing", inversedBy="reviews")
+     * @JoinColumn(name="housing_id", referencedColumnName="id")
+     */
+    private $housing;
+
     public function getId()
     {
         return $this->id;
@@ -36,6 +45,18 @@ class Review
     public function setReview(int $review): self
     {
         $this->review = $review;
+
+        return $this;
+    }
+
+    public function getHousing(): ?Housing
+    {
+        return $this->housing;
+    }
+
+    public function setHousing(?Housing $housing): self
+    {
+        $this->housing = $housing;
 
         return $this;
     }
