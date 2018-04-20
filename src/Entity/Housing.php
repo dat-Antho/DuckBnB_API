@@ -78,11 +78,10 @@ class Housing
     private $address;
 
     /**
-     * Many Address have One Housing.
-     * @ManyToOne(targetEntity="Review", inversedBy="housings")
-     * @JoinColumn(name="review_id", referencedColumnName="id")
+     * One Housing has Many Reviews.
+     * @OneToMany(targetEntity="Review", mappedBy="housing")
      */
-    private $review;
+    private $reviews;
 
 
     /**
@@ -101,6 +100,7 @@ class Housing
     {
         $this->photos = new ArrayCollection();
         $this->bookings = new ArrayCollection();
+        $this->reviews = new ArrayCollection();
     }
 
 
@@ -299,6 +299,37 @@ class Housing
     public function setChild(int $child): self
     {
         $this->child = $child;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Review[]
+     */
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
+    }
+
+    public function addReview(Review $review): self
+    {
+        if (!$this->reviews->contains($review)) {
+            $this->reviews[] = $review;
+            $review->setHousing($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReview(Review $review): self
+    {
+        if ($this->reviews->contains($review)) {
+            $this->reviews->removeElement($review);
+            // set the owning side to null (unless already changed)
+            if ($review->getHousing() === $this) {
+                $review->setHousing(null);
+            }
+        }
 
         return $this;
     }
