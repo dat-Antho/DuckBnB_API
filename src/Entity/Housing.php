@@ -48,7 +48,22 @@ class Housing
     /**
      * @ORM\Column(type="integer")
      */
-    private $people_max;
+    private $bed_number;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $type;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $adult;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $child;
 
     /**
      * @ORM\Column(type="float")
@@ -138,18 +153,6 @@ class Housing
     public function setEnd(\DateTimeInterface $end): self
     {
         $this->end = $end;
-
-        return $this;
-    }
-
-    public function getPeopleMax(): ?int
-    {
-        return $this->people_max;
-    }
-
-    public function setPeopleMax(int $people_max): self
-    {
-        $this->people_max = $people_max;
 
         return $this;
     }
@@ -248,6 +251,54 @@ class Housing
                 $booking->setHousing(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getBedNumber(): ?int
+    {
+        return $this->bed_number;
+    }
+
+    public function setBedNumber(int $bed_number): self
+    {
+        $this->bed_number = $bed_number;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getAdult(): ?int
+    {
+        return $this->adult;
+    }
+
+    public function setAdult(int $adult): self
+    {
+        $this->adult = $adult;
+
+        return $this;
+    }
+
+    public function getChild(): ?int
+    {
+        return $this->child;
+    }
+
+    public function setChild(int $child): self
+    {
+        $this->child = $child;
 
         return $this;
     }
