@@ -23,7 +23,7 @@ class Review
     /**
      * @ORM\Column(type="integer")
      */
-    private $review;
+    private $rating;
 
     /**
      * Many Bookings have One Housing.
@@ -37,18 +37,6 @@ class Review
         return $this->id;
     }
 
-    public function getReview(): ?int
-    {
-        return $this->review;
-    }
-
-    public function setReview(int $review): self
-    {
-        $this->review = $review;
-
-        return $this;
-    }
-
     public function getHousing(): ?Housing
     {
         return $this->housing;
@@ -57,6 +45,18 @@ class Review
     public function setHousing(?Housing $housing): self
     {
         $this->housing = $housing;
+
+        return $this;
+    }
+
+    public function getRating(): ?int
+    {
+        return $this->rating;
+    }
+
+    public function setRating(int $rating): self
+    {
+        $this->rating = $rating;
 
         return $this;
     }
