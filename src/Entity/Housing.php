@@ -181,18 +181,6 @@ class Housing
         return $this;
     }
 
-    public function getReview(): ?Review
-    {
-        return $this->review;
-    }
-
-    public function setReview(?Review $review): self
-    {
-        $this->review = $review;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Photo[]
      */
