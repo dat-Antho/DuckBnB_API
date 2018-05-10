@@ -16,14 +16,19 @@ security:
             security: false
         main:
             anonymous: true
-            http_basic: ~
+            json_login:
+              check_path: /jsonlogin
+              username_path: login
+              password_path: password
             provider: db_provider
             form_login:
                 login_path: login
                 check_path: login
+                default_target_path: /api
             logout:
                 path:   /logout
                 target: /
+
             # activate different ways to authenticate
 
             # http_basic: true
