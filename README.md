@@ -13,3 +13,11 @@ avec le paramètre suivant
 et les datas : 
 '{"username":"exemple","password":"exemple"}'
 Si l'auth réussi il y a une réponse 200
+
+
+## inscription 
+
+URL /jsonregister
+
+Params en json
+{"login" : "login", "password": lorem,"email" : "e@t.fr"}
