@@ -31,6 +31,6 @@ class SecurityController extends Controller
      */
     public function login(Request $request)
     {
-        return new Response('loged in');
+        return new Response('logged in');
     }
 }
